@@ -30,8 +30,8 @@ fi
 
 # Define the names for the resources
 VCN_NAME="vcn-helidon-kubernetes-$USER_INITIALS"
-SUBNET_NAME="H-K8S-Lab-A-Helidon-$USER_INITIALS"
-INSTANCE_NAME="H-K8S-Lab-A-Helidon-$USER_INITIALS"
+SUBNET_NAME="H-K8S-Lab-A-Helidon"
+INSTANCE_NAME="H-K8S-Lab-A-Helidon"
 
 # Define the ingress rule parameters
 cidr_block="0.0.0.0/0"
