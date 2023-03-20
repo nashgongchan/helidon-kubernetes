@@ -53,7 +53,7 @@ if [[ $(oci network subnet list --compartment-id "$COMPARTMENT_OCID" --display-n
   echo "Subnet already exists."
 else
   # Create subnet
-  SUBNET_ID=$(oci network subnet create --compartment-id <COMPARTMENT_OCID> --vcn-id $VCN_ID --display-name "$SUBNET_NAME" --cidr-block "10.0.0.0/24" --wait-for-state AVAILABLE --region "$SETUP_REGION" --query 'data.id' --raw-output)
+  SUBNET_ID=$(oci network subnet create --compartment-id "$COMPARTMENT_OCID" --vcn-id $VCN_ID --display-name "$SUBNET_NAME" --cidr-block "10.0.0.0/24" --wait-for-state AVAILABLE --region "$SETUP_REGION" --query 'data.id' --raw-output)
   echo "Created subnet with ID: $SUBNET_ID"
 fi
 
