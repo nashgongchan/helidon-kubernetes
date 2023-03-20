@@ -1,0 +1,8 @@
+app:
+  persistenceUnit: "stockmanagerJTA"
+#  department: "My Shop"
+  
+tracing:
+  service: "stockmanager"
+  host: "zipkin"
+ 
