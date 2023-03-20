@@ -65,7 +65,7 @@ if [[ $(oci compute instance list --compartment-id "$COMPARTMENT_OCID" --display
   echo "Instance already exists."
 else
   # Create instance
-  INSTANCE_ID=$(oci compute instance launch --availability-domain "$(oci iam availability-domain list --query "data[0].name" --raw-output)" --compartment-id "$COMPARTMENT_OCID" --shape "VM.Standard.E3.Flex" --shape-config file://$HOME/shape-config.json --display-name "$INSTANCE_NAME" --subnet-id $SUBNET_ID --image-id "ocid1.image.oc1..aaaaaaaaq73xxgdkpzczyaypsirub75xp75nzogtu5ti5o7ikc6pw2idjmuq" --wait-for-state RUNNING --region "$SETUP_REGION" --query 'data.id' --raw-output)
+  INSTANCE_ID=$(oci compute instance launch --availability-domain "$(oci iam availability-domain list --query "data[0].name" --raw-output)" --compartment-id "$COMPARTMENT_OCID" --shape "VM.Standard.E3.Flex" --shape-config file://$HOME/shape-config.json --display-name "$INSTANCE_NAME" --subnet-id "$SUBNET_ID" --image-id "ocid1.image.oc1..aaaaaaaaq73xxgdkpzczyaypsirub75xp75nzogtu5ti5o7ikc6pw2idjmuq" --wait-for-state RUNNING --region "$SETUP_REGION" --query 'data.id' --raw-output)
   echo "Created instance with ID: $INSTANCE_ID"
 fi
 
@@ -78,5 +78,4 @@ if [ -z "$security_list" ]; then
 fi
 
 # Add the ingress rule to the security list
-# oci network security-list update --security-list-id $security_list --ingress-security-rules "[{\"protocol\": \"$protocol\", \"source\": \"$cidr_block\", \"source-type\": \"CIDR_BLOCK\", \"tcp-options\": {\"destination-port-range\": {\"max\": $destination_port_range, \"min\": $destination_port_range}}, \"description\": \"$description\"}]"
 oci network security-list update --security-list-id $security_list --ingress-security-rules file://$HOME/ingress-rules.json
