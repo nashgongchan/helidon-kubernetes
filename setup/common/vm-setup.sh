@@ -28,9 +28,12 @@ else
   echo "Operating in compartment $COMPARTMENT_NAME"
 fi
 
+# Define a timestamp function
+TIMESTAMP=`date "+%Y%m%d-%H%M"`
+
 # Define the names for the resources
 VCN_NAME="vcn-helidon-kubernetes-$USER_INITIALS"
-SUBNET_NAME="subnet-helidon"
+SUBNET_NAME="subnet-$TIMESTAMP"
 INSTANCE_NAME="H-K8S-Lab-A-Helidon-$USER_INITIALS"
 
 # Define the ingress rule parameters
